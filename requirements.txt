@@ -1,0 +1,13 @@
+scipy
+numpy
+matplotlib
+pandas
+sklearn
+ipython
+google_images_download
+pylint
+django==1.9
+django-appconf
+pytz
+django-user-accounts
+pinax-theme-bootstrap
