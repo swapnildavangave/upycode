@@ -1,5 +1,5 @@
 # upycode
-Ready to use python3 development docker container.
+Ready to use python3 development with vscode docker container.
 
 ## Prequesits
   - Docker
