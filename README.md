@@ -1,6 +1,9 @@
 # upycode
 Ready to use python3 development docker container.
 
+## Prequesits
+  - Docker
+
 ## Use built in container from docker hub.
 
   ```sh
@@ -10,3 +13,9 @@ Ready to use python3 development docker container.
   ```
 
 ## build
+  You can build image localy .
+  ```sh
+  cd upycode/
+  TAG=jashinfotec/upycode
+  docker build -t $TAG .
+  ```
