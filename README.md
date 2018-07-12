@@ -1,4 +1,4 @@
-# upycode
+# jashinfotec/upycode
 Ready to use python3 development with vscode docker container.
 
 ## Prequesits
@@ -12,8 +12,8 @@ Ready to use python3 development with vscode docker container.
   ./upycode --username=username --home-dir=/path/to/home/dir
   ```
 
-## build
-  You can build image localy .
+## Building Locally
+  You can build image locally .
   ```sh
   cd upycode/
   TAG=jashinfotec/upycode
