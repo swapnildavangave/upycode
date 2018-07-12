@@ -1,16 +1,22 @@
-usage="$(basename "$0") [-h] [-s n] -- program to calculate the answer to life, the universe and everything
+#!/bin/bash
+
+usage="$(basename "$0") [-h] [-u username] [-d homedir] -- script to create python dev environment
 
 where:
     -h  show this help text
-    -s  set the seed value (default: 42)"
+    -u  set username (default: user)
+    -d  path to mount container home directory (default: /usr/share/home)"
+uname="user"
+path="/usr/share/home"
 
-seed=42
-while getopts ':hs:' option; do
+while getopts 'h:u:d:' option; do
   case "$option" in
     h) echo "$usage"
        exit
        ;;
-    s) seed=$OPTARG
+    u) uname=$OPTARG
+       ;;
+    d) path=$OPTARG
        ;;
     :) printf "missing argument for -%s\n" "$OPTARG" >&2
        echo "$usage" >&2
@@ -23,3 +29,21 @@ while getopts ':hs:' option; do
   esac
 done
 shift $((OPTIND - 1))
+echo "Pulling upycode image ..."
+docker pull jashinfotec/upycode
+xhost local:docker
+xhost local:root
+echo "Starting upycode Container ..."
+docker run -it --init --rm \
+-e DISPLAY=$DISPLAY \
+-e QT_X11_NO_MITSHM=1 \
+-v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+-v $path:/home/$uname:rw \
+-v /run/dbus/:/run/dbus/ \
+--device /dev/fuse \
+--privileged --cap-add=MKNOD --cap-add=SYS_ADMIN --device=/dev/fuse \
+--net="host" \
+-v /dev/shm:/dev/shm \
+-e XAUTHORITY=/.Xauthority \
+-v ~/.Xauthority:/.Xauthority:ro \
+jashinfotec/upycode /bin/onInit $uname
