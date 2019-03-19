@@ -6,7 +6,7 @@ sklearn
 ipython
 google_images_download
 pylint
-django==1.9
+django
 django-appconf
 pytz
 django-user-accounts
